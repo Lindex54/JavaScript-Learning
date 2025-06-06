@@ -36,7 +36,7 @@ document.addEventListener('keydown', function (e) {
 
 ///////////////////////////////////
 ///////////////////////////////////
-
+/*
 // Selecting elements
 console.log(document.documentElement)
 console.log(document.head);
@@ -53,16 +53,70 @@ console.log(document.getElementsByClassName('btn'));
 
 // Creating and inserting elements
 
-// const message = document.createElement('div');
-// message.classList.add('cookie-message');
+const message = document.createElement('div');
+message.classList.add('cookie-message');
 
-// message.innerHTML = 'We use cookied for improved functionality and analytics. <button class="btn btn--close-cookie">Got it!</button>';
+message.innerHTML = 'We use cookied for improved functionality and analytics. <button class="btn btn--close-cookie">Got it!</button>';
 
-// // header.prepend(message);
-// header.append(message);
-// // header.append(message.cloneNode(true));
+// header.prepend(message);
+header.append(message);
+// header.append(message.cloneNode(true));
 
-// // Delete elements
-// document.querySelector('.btn--close-cookie').addEventListener('click', function(){
-//   message.remove();
+// Delete elements
+document.querySelector('.btn--close-cookie').addEventListener('click', function(){
+  message.remove();
+})
+
+// styles 
+message.style.backgroundColor = '#37383d';
+message.style.width = '120%';
+
+console.log(message.style.color);
+console.log(message.style.backgroundColor);
+
+message.style.height = Number.parseFloat(getComputedStyle(message).height, 10) + 30 + 'px';
+*/
+
+const btnScrollTo = document.querySelector('.btn--scroll-to');
+const section1 = document.querySelector('#section--1');
+
+btnScrollTo.addEventListener('click', function(e){
+// const s1coords = section1.getBoundingClientRect();
+// console.log(s1coords);
+
+// console.log(e.target.getBoundingClientRect());
+
+// console.log('current scroll (x/Y)', window.pageXOffset, window.pageYOffset)
+
+// console.log('height/width', document.documentElement.clientHeight, document.documentElement.clientWidth);
+
+// window.scrollTo({
+//   left: s1coords.left + window.pageXOffset,
+//   top: s1coords.top + window.pageYOffset,
+//   behavior: 'smooth',
 // })
+section1.scrollIntoView({behavior: 'smooth'});
+});
+
+// Adding event listerners
+
+const h1 = document.querySelector('h1');
+
+// h1.addEventListener('mouseenter', function(e){
+  
+// })
+
+// h1.onmouseenter = function(e){
+// alert('You are reading the heading')
+// };
+
+const alertH1 = function(e) {
+  alert('You are reading this heading');
+  
+};
+
+h1.addEventListener('mouseenter', alertH1)
+
+setTimeout(() => {
+  h1.removeEventListener('mouseenter', alertH1);
+}, 3000);
