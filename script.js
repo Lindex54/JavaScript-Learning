@@ -123,7 +123,7 @@ setTimeout(() => {
   h1.removeEventListener('mouseenter', alertH1);
 }, 3000);
 */
-
+/*
 const randomInt = (min, max) => Math.floor(Math.random() * (max - min + 1) + min);
 const randomColor = () => `rgb(${randomInt(0, 255)}, ${randomInt(0, 255)}, ${randomInt(0, 255)})`;
 // console.log(randomColer(0, 255));
@@ -148,3 +148,27 @@ document.querySelector('.nav').addEventListener('click', function(e){
    console.log('NAV', e.target, e.currentTarget)
   console.log(e.currentTarget === this)
 }, true);
+
+*/
+// const allNavLinks = document.querySelectorAll('.nav__link');
+
+// allNavLinks.forEach(function(el) {
+//   el.addEventListener('click', function(e){
+//     e.preventDefault();
+//     const id = this.getAttribute('href');
+//     console.log(id);
+//     document.querySelector(id).scrollIntoView({behavior: "smooth"});
+//   })
+// })
+
+const allNavLink = document.querySelector('.nav__link');
+
+allNavLink.addEventListener('click', function (e){
+  e.preventDefault();
+
+  if(e.target.classList.contains('nav__link')){
+     const id = e.target.getAttribute('href');
+    console.log(id);
+    document.querySelector(id).scrollIntoView({behavior: "smooth"});
+  }
+})
