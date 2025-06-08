@@ -168,7 +168,6 @@ allNavLink.addEventListener('click', function (e){
 
   if(e.target.classList.contains('nav__link')){
      const id = e.target.getAttribute('href');
-    console.log(id);
     document.querySelector(id).scrollIntoView({behavior: "smooth"});
   }
 })
@@ -186,8 +185,11 @@ tabsContainer.addEventListener('click', function(e){
   // Guard clause
 if(!clicked) return;
 
-tabs.forEach(t => t.classList.remove('operations__tab--active'))
-  clicked.classList.add('operations__tab--active');
+tabs.forEach(t => t.classList.remove('operations__tab--active'));
+tabsContent.forEach(c => c.classList.remove('operations__content--active'))
+
+// Active tabe
+clicked.classList.add('operations__tab--active');
 
   // Active content area
   document.querySelector(`.operations__content--${clicked.dataset.tab}`).classList.add('operations__content--active');
