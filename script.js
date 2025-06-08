@@ -173,6 +173,27 @@ allNavLink.addEventListener('click', function (e){
   }
 })
 
+// Tap component
+const tabs = document.querySelectorAll('.operations__tab');
+const tabsContainer = document.querySelector('.operations__tab-container');
+const tabsContent = document.querySelectorAll('.operations__content');
+
+// tabs.forEach(t => t.addEventListener('click', () => console.log('Tab')));
+tabsContainer.addEventListener('click', function(e){
+  const clicked = e.target.closest('.operations__tab');
+  // console.log(clicked);
+
+  // Guard clause
+if(!clicked) return;
+
+tabs.forEach(t => t.classList.remove('operations__tab--active'))
+  clicked.classList.add('operations__tab--active');
+
+  // Active content area
+  document.querySelector(`.operations__content--${clicked.dataset.tab}`).classList.add('operations__content--active');
+})
+
+/*
 // Going downward child
 console.log(h1.querySelectorAll('.highlight'));
 console.log(h1.childNodes)
@@ -186,3 +207,13 @@ console.log(h1.parentElement);
 
 h1.closest('.header').style.background = 'var(--gradient-secondary)';
 h1.closest('h1').style.background = 'var(--gradient-primary)';
+
+// Going sideways: siblings
+console.log(h1.previousElementSibling);
+console.log(h1.nextElementSibling);
+
+console.log(h1.previousSibling);
+console.log(h1.nextSibling);
+
+console.log(h1.parentElement.children);
+*/
