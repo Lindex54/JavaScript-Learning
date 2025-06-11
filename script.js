@@ -8,6 +8,7 @@ const overlay = document.querySelector('.overlay');
 const btnCloseModal = document.querySelector('.btn--close-modal');
 const btnsOpenModal = document.querySelectorAll('.btn--show-modal');
 const nav = document.querySelector('.nav');
+const allSectons = document.querySelectorAll('.section');
 
 const openModal = function (e) {
   e.preventDefault();
@@ -258,6 +259,23 @@ const headerObserver = new IntersectionObserver(stickyNav, {
 })
 headerObserver.observe(header)
 
+// Reveal Sections
+const revealSections = function(entries, observer){
+const [entry] = entries;
+ if(!entry.isIntersecting) return;
+ entry.target.classList.remove('section--hidden');
+ observer.unobserve(entry.target);
+}
+
+const sectionObserver = new IntersectionObserver(revealSections, {
+  root: null,
+  threshold: 0.15,
+})
+
+allSectons.forEach(function(section){
+  sectionObserver.observe(section);
+  section.classList.add('section--hidden');
+})
 // another option
 // nav.addEventListener('mouseover', function(e){
 //  handlehover(e, 0.5);
