@@ -352,20 +352,23 @@ document.addEventListener('keydown', function (e) {
   // e.key === 'ArowRight' && nextSlide();
 });
 
-// DOM Load events
-document.addEventListener('DOMContentLoaded', function (e) {
-  console.log('HTML parsed and DOM tree built', e);
-});
+/*
+// // DOM Load events
+// document.addEventListener('DOMContentLoaded', function (e) {
+//   console.log('HTML parsed and DOM tree built', e);
+// });
 
-window.addEventListener('load', function (e) {
-  console.log('Page Fully loaded', e);
-});
+// window.addEventListener('load', function (e) {
+//   console.log('Page Fully loaded', e);
+// });
 
-window.addEventListener('beforeunload', function (e) {
-  e.preventDefault();
-  console.log(e);
-  e.returnValue = '';
-});
+// window.addEventListener('beforeunload', function (e) {
+//   e.preventDefault();
+//   console.log(e);
+//   e.returnValue = '';
+// });
+
+*/
 
 // another option
 // nav.addEventListener('mouseover', function(e){
