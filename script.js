@@ -35,8 +35,6 @@ document.addEventListener('keydown', function (e) {
   }
 });
 
-
-
 ///////////////////////////////////
 ///////////////////////////////////
 /*
@@ -83,22 +81,22 @@ message.style.height = Number.parseFloat(getComputedStyle(message).height, 10) +
 const btnScrollTo = document.querySelector('.btn--scroll-to');
 const section1 = document.querySelector('#section--1');
 
-btnScrollTo.addEventListener('click', function(e){
-// const s1coords = section1.getBoundingClientRect();
-// console.log(s1coords);
+btnScrollTo.addEventListener('click', function (e) {
+  // const s1coords = section1.getBoundingClientRect();
+  // console.log(s1coords);
 
-// console.log(e.target.getBoundingClientRect());
+  // console.log(e.target.getBoundingClientRect());
 
-// console.log('current scroll (x/Y)', window.pageXOffset, window.pageYOffset)
+  // console.log('current scroll (x/Y)', window.pageXOffset, window.pageYOffset)
 
-// console.log('height/width', document.documentElement.clientHeight, document.documentElement.clientWidth);
+  // console.log('height/width', document.documentElement.clientHeight, document.documentElement.clientWidth);
 
-// window.scrollTo({
-//   left: s1coords.left + window.pageXOffset,
-//   top: s1coords.top + window.pageYOffset,
-//   behavior: 'smooth',
-// })
-section1.scrollIntoView({behavior: 'smooth'});
+  // window.scrollTo({
+  //   left: s1coords.left + window.pageXOffset,
+  //   top: s1coords.top + window.pageYOffset,
+  //   behavior: 'smooth',
+  // })
+  section1.scrollIntoView({ behavior: 'smooth' });
 });
 
 // Adding event listerners
@@ -106,7 +104,7 @@ section1.scrollIntoView({behavior: 'smooth'});
 const h1 = document.querySelector('h1');
 
 // h1.addEventListener('mouseenter', function(e){
-  
+
 // })
 
 // h1.onmouseenter = function(e){
@@ -166,14 +164,14 @@ document.querySelector('.nav').addEventListener('click', function(e){
 
 const allNavLink = document.querySelector('.nav__link');
 
-allNavLink.addEventListener('click', function (e){
+allNavLink.addEventListener('click', function (e) {
   e.preventDefault();
 
-  if(e.target.classList.contains('nav__link')){
-     const id = e.target.getAttribute('href');
-    document.querySelector(id).scrollIntoView({behavior: "smooth"});
+  if (e.target.classList.contains('nav__link')) {
+    const id = e.target.getAttribute('href');
+    document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
   }
-})
+});
 
 // Tap component
 const tabs = document.querySelectorAll('.operations__tab');
@@ -181,27 +179,28 @@ const tabsContainer = document.querySelector('.operations__tab-container');
 const tabsContent = document.querySelectorAll('.operations__content');
 
 // tabs.forEach(t => t.addEventListener('click', () => console.log('Tab')));
-tabsContainer.addEventListener('click', function(e){
+tabsContainer.addEventListener('click', function (e) {
   const clicked = e.target.closest('.operations__tab');
   // console.log(clicked);
 
   // Guard clause
-if(!clicked) return;
+  if (!clicked) return;
 
-tabs.forEach(t => t.classList.remove('operations__tab--active'));
-tabsContent.forEach(c => c.classList.remove('operations__content--active'))
+  tabs.forEach(t => t.classList.remove('operations__tab--active'));
+  tabsContent.forEach(c => c.classList.remove('operations__content--active'));
 
-// Active tabe
-clicked.classList.add('operations__tab--active');
+  // Active tabe
+  clicked.classList.add('operations__tab--active');
 
   // Active content area
-  document.querySelector(`.operations__content--${clicked.dataset.tab}`).classList.add('operations__content--active');
-})
-
+  document
+    .querySelector(`.operations__content--${clicked.dataset.tab}`)
+    .classList.add('operations__content--active');
+});
 
 // Menu fade animation
-const handlehover = function(e){
- if (e.target.classList.contains('nav__link')){
+const handlehover = function (e) {
+  if (e.target.classList.contains('nav__link')) {
     const link = e.target;
     const siblins = link.closest('.nav').querySelectorAll('.nav__link');
     const logo = link.closest('.nav').querySelector('img');
@@ -225,7 +224,6 @@ nav.addEventListener('mouseout', handlehover.bind(1));
 // else nav.classList.remove('sticky');
 // })
 
-
 // Sticy navigation: Intersection Observer API
 
 // const obsCallback = function (entries, Observer) {
@@ -245,34 +243,34 @@ nav.addEventListener('mouseout', handlehover.bind(1));
 const header = document.querySelector('.header');
 const navHeight = nav.getBoundingClientRect().height;
 
-const stickyNav = function(entries){
+const stickyNav = function (entries) {
   const [entry] = entries;
-  console.log(entry)
-  if(!entry.isIntersecting) nav.classList.add('sticky');
+  console.log(entry);
+  if (!entry.isIntersecting) nav.classList.add('sticky');
   else nav.classList.remove('sticky');
-}
+};
 
 const headerObserver = new IntersectionObserver(stickyNav, {
   root: null,
   threshold: 0,
   rootMargin: `-${navHeight}px`,
-})
-headerObserver.observe(header)
+});
+headerObserver.observe(header);
 
 // Reveal Sections
-const revealSections = function(entries, observer){
-const [entry] = entries;
- if(!entry.isIntersecting) return;
- entry.target.classList.remove('section--hidden');
- observer.unobserve(entry.target);
-}
+const revealSections = function (entries, observer) {
+  const [entry] = entries;
+  if (!entry.isIntersecting) return;
+  entry.target.classList.remove('section--hidden');
+  observer.unobserve(entry.target);
+};
 
 const sectionObserver = new IntersectionObserver(revealSections, {
   root: null,
   threshold: 0.15,
-})
+});
 
-allSectons.forEach(function(section){
+allSectons.forEach(function (section) {
   sectionObserver.observe(section);
   // section.classList.add('section--hidden');
 });
@@ -280,13 +278,13 @@ allSectons.forEach(function(section){
 // Lazy loading images
 const imgTargets = document.querySelectorAll('img[data-src]');
 
-const loadImg = function(entries, observer){
+const loadImg = function (entries, observer) {
   const [entry] = entries;
   if (!entry.isIntersecting) return;
 
   // Replace src with data-src
   entry.target.src = entry.target.dataset.src;
-  entry.target.addEventListener('load', function(){
+  entry.target.addEventListener('load', function () {
     entry.target.classList.remove('lazy-img');
   });
 
@@ -294,14 +292,14 @@ const loadImg = function(entries, observer){
 };
 
 const imgObserver = new IntersectionObserver(loadImg, {
- root: null,
- threshold: 0,
- rootMargin: '200px'
+  root: null,
+  threshold: 0,
+  rootMargin: '200px',
 });
 
-imgTargets.forEach(img => imgObserver.observe(img))
+imgTargets.forEach(img => imgObserver.observe(img));
 
-// Slider 
+// Slider
 const slides = document.querySelectorAll('.slide');
 const btnLeft = document.querySelector('.slider__btn--left');
 const btnRight = document.querySelector('.slider__btn--right');
@@ -315,43 +313,59 @@ const maxSlide = slides.length;
 // slider.style.overflow = `visible`;
 // slides.forEach((s, i) => s.style.transform = `translateX(${100 * i}%)`)
 
-const goToSlide = function(slide){
-  slides.forEach((s, i) => s.style.transform = `translateX(${100 * (i - slide)}%)`);
+const goToSlide = function (slide) {
+  slides.forEach(
+    (s, i) => (s.style.transform = `translateX(${100 * (i - slide)}%)`)
+  );
 };
 
 goToSlide(0);
 
 // Next Slide
-const nextSlide =  function() {
-  if(curSlide === maxSlide - 1){
+const nextSlide = function () {
+  if (curSlide === maxSlide - 1) {
     curSlide = 0;
-  }else {
+  } else {
     curSlide++;
   }
   goToSlide(curSlide);
   // slides.forEach((s, i) => s.style.transform = `translateX(${100 * (i - curSlide)}%)`);
-}
-const prevSlide = function(){
-  if(curSlide === 0){
+};
+const prevSlide = function () {
+  if (curSlide === 0) {
     curSlide = maxSlide - 1;
-  }else{
+  } else {
     curSlide--;
   }
   goToSlide(curSlide);
-}
+};
 btnRight.addEventListener('click', nextSlide);
 btnLeft.addEventListener('click', prevSlide);
 
-document.addEventListener('keydown', function(e){
+document.addEventListener('keydown', function (e) {
   if (e.key === 'ArrowLeft') {
     prevSlide();
-  }else{
-    e.key === 'ArrowRight'
+  } else {
+    e.key === 'ArrowRight';
     nextSlide();
   }
   // e.key === 'ArowRight' && nextSlide();
-})
+});
 
+// DOM Load events
+document.addEventListener('DOMContentLoaded', function (e) {
+  console.log('HTML parsed and DOM tree built', e);
+});
+
+window.addEventListener('load', function (e) {
+  console.log('Page Fully loaded', e);
+});
+
+window.addEventListener('beforeunload', function (e) {
+  e.preventDefault();
+  console.log(e);
+  e.returnValue = '';
+});
 
 // another option
 // nav.addEventListener('mouseover', function(e){
@@ -361,7 +375,6 @@ document.addEventListener('keydown', function(e){
 // nav.addEventListener('mouseout', function(e){
 //  handlehover(e, 1);
 // });
-
 
 /*
 // Going downward child
