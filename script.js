@@ -321,6 +321,7 @@ const createDots = function () {
     );
   });
 };
+createDots();
 
 const goToSlide = function (slide) {
   slides.forEach(
@@ -336,6 +337,7 @@ const nextSlide = function () {
     curSlide = 0;
   } else {
     curSlide++;
+    // console.log('next slide');
   }
   goToSlide(curSlide);
   // slides.forEach((s, i) => s.style.transform = `translateX(${100 * (i - curSlide)}%)`);
